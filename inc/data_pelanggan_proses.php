@@ -202,7 +202,7 @@
       </div>
     </div>
 
-    <div class="row pt-3">
+    <!-- <div class="row pt-3">
       <div class="col-12">
         <form action="" method="post">
           <div class="card">
@@ -216,14 +216,14 @@
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
 
     <?php  
-    if (isset($_POST["Hitung"])) {
+    // if (isset($_POST["Hitung"])) {
       $sql_testing = mysqli_query($db, "SELECT * FROM data_testing JOIN data_daya_tarif ON data_testing.id_daya_tarif = data_daya_tarif.id_daya_tarif JOIN data_peruntukan_persil ON data_testing.id_peruntukan_persil = data_peruntukan_persil.id_peruntukan_persil WHERE id_pel = '$id_pel' ") or die ($db->error);
       $data_testing = mysqli_fetch_array($sql_testing);
 
-      $k=$_POST["k"];
+      $k=3;
       $d_kwh_rt=$data_testing['kwh_rt'];
       $d_kwh_bisnis=$data_testing['kwh_bisnis'];
       $d_id_daya_tarif=$data_testing['id_daya_tarif'];
@@ -431,9 +431,6 @@
           </div>
         </div>
       </div>
-      <?php  
-    }
-    ?>
     <?php  
     mysqli_query($db, "DELETE FROM data_hasil WHERE id_pel = '$id_pel'") or die ($db->error);
     mysqli_query($db, "DELETE FROM data_proses WHERE id_pel = '$id_pel'") or die ($db->error);

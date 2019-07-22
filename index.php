@@ -172,159 +172,148 @@ if(@$_SESSION['superadmin'] || @$_SESSION['admin'] || @$_SESSION['karyawan']) {
                     <i class="menu-arrow"></i>
                     <i class="mdi mdi-account-network menu-icon"></i>
                   </a>
-                  <?php if ($data_terlogin['hak_akses'] == 'SuperAdmin'): ?>
-                    <div class="collapse" id="ui-basic">
+                  <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                      <li class="nav-item">
+                        <a class="nav-link" href="?page=user_karyawan">Karyawan</a></li>
+                      </ul>
+                    </div>
+                  </li>
+
+
+                  <li class="nav-item <?php if(@$_GET['page'] == 'data_tarif_daya') { echo 'active'; } elseif(@$_GET['page'] == 'data_peruntukan_persil') { echo 'active'; }  ?>">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
+                      <span class="menu-title">Manajemen Data</span>
+                      <i class="menu-arrow"></i>
+                      <i class="mdi mdi-book menu-icon"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic1">
                       <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> 
-                          <a class="nav-link" href="?page=user_admin">Admin</a></li>
+                          <a class="nav-link" href="?page=data_tarif_daya">Daya / Tarif</a></li>
                           <li class="nav-item">
-                            <a class="nav-link" href="?page=user_karyawan">Karyawan</a></li>
+                            <a class="nav-link" href="?page=data_peruntukan_persil">Peruntukan Persil</a></li>
                           </ul>
                         </div>
-                        <?php elseif ($data_terlogin['hak_akses'] == 'Admin'): ?>
-                          <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                              <li class="nav-item">
-                                <a class="nav-link" href="?page=user_karyawan">Karyawan</a></li>
-                              </ul>
-                            </div>
-                          <?php endif ?>
-                        </li>
+                      </li>
+                    <?php endif ?>
 
+                    <li class="nav-item <?php if(@$_GET['page'] == 'data_pelanggan') { echo 'active'; } ?>">
+                      <a class="nav-link" href="?page=data_pelanggan">
+                        <span class="menu-title">Data Pelanggan</span>
+                        <i class="mdi mdi-file menu-icon"></i>
+                      </a>
+                    </li>
+                    <?php if ($data_terlogin['hak_akses'] == 'Admin'): ?>
+                      <li class="nav-item <?php if(@$_GET['page'] == 'data_training') { echo 'active'; } ?>">
+                        <a class="nav-link" href="?page=data_training">
+                          <span class="menu-title">Data Training</span>
+                          <i class="mdi mdi-file-chart menu-icon"></i>
+                        </a>
+                      </li>
+                    <?php endif ?>
+                  </ul>
+                </nav>
+                <!-- NAVBAR BAWAH -->
 
-                        <li class="nav-item <?php if(@$_GET['page'] == 'data_tarif_daya') { echo 'active'; } elseif(@$_GET['page'] == 'data_peruntukan_persil') { echo 'active'; }  ?>">
-                          <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
-                            <span class="menu-title">Manajemen Data</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-book menu-icon"></i>
-                          </a>
-                          <div class="collapse" id="ui-basic1">
-                            <ul class="nav flex-column sub-menu">
-                              <li class="nav-item"> 
-                                <a class="nav-link" href="?page=data_tarif_daya">Daya / Tarif</a></li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="?page=data_peruntukan_persil">Peruntukan Persil</a></li>
-                                </ul>
-                              </div>
-                            </li>
-                          <?php endif ?>
+                <!-- partial -->
+                <div class="main-panel">
 
-                          <li class="nav-item <?php if(@$_GET['page'] == 'data_pelanggan') { echo 'active'; } ?>">
-                            <a class="nav-link" href="?page=data_pelanggan">
-                              <span class="menu-title">Data Pelanggan</span>
-                              <i class="mdi mdi-file menu-icon"></i>
-                            </a>
-                          </li>
-                          <?php if ($data_terlogin['hak_akses'] == 'SuperAdmin'): ?>
-                            <li class="nav-item <?php if(@$_GET['page'] == 'data_training') { echo 'active'; } ?>">
-                              <a class="nav-link" href="?page=data_training">
-                                <span class="menu-title">Data Training</span>
-                                <i class="mdi mdi-file-chart menu-icon"></i>
-                              </a>
-                            </li>
-                          <?php endif ?>
-                        </ul>
-                      </nav>
-                      <!-- NAVBAR BAWAH -->
-
-                      <!-- partial -->
-                      <div class="main-panel">
-
-                       <!-- batas awal -->  
-                       <?php
-                       if(@$_GET['page'] == '') {
-                        include "inc/dashboard.php";
-                      } else if(@$_GET['page'] == 'user_admin') {
-                        include "inc/user_admin.php";
-                      } else if(@$_GET['page'] == 'user_karyawan') {
-                        include "inc/user_karyawan.php";
-                      } else if(@$_GET['page'] == 'users_detail') {
-                        include "inc/users_detail.php";
-                      } else if(@$_GET['page'] == 'user_detail') {
-                        include "inc/user_detail.php";
-                      } else if(@$_GET['page'] == 'data_tarif_daya') {
-                        include "inc/data_tarif_daya.php";
-                      } else if(@$_GET['page'] == 'data_peruntukan_persil') {
-                        include "inc/data_peruntukan_persil.php";
+                 <!-- batas awal -->  
+                 <?php
+                 if(@$_GET['page'] == '') {
+                  include "inc/dashboard.php";
+                } else if(@$_GET['page'] == 'user_admin') {
+                  include "inc/user_admin.php";
+                } else if(@$_GET['page'] == 'user_karyawan') {
+                  include "inc/user_karyawan.php";
+                } else if(@$_GET['page'] == 'users_detail') {
+                  include "inc/users_detail.php";
+                } else if(@$_GET['page'] == 'user_detail') {
+                  include "inc/user_detail.php";
+                } else if(@$_GET['page'] == 'data_tarif_daya') {
+                  include "inc/data_tarif_daya.php";
+                } else if(@$_GET['page'] == 'data_peruntukan_persil') {
+                  include "inc/data_peruntukan_persil.php";
                     // } else if(@$_GET['page'] == 'user_tambah') {
                     //   include "inc/user_tambah.php";
                     // } else if(@$_GET['page'] == 'user_edit') {
                     //   include "inc/user_edit.php";
-                      } else if(@$_GET['page'] == 'data_pelanggan') {
-                        include "inc/data_pelanggan.php";
-                      } else if(@$_GET['page'] == 'data_pelanggan_manajemen') {
-                        include "inc/data_pelanggan_manajemen.php";
-                      } else if(@$_GET['page'] == 'data_pelanggan_detail') {
-                        include "inc/data_pelanggan_detail.php";
-                      } else if(@$_GET['page'] == 'data_pelanggan_proses') {
-                        include "inc/data_pelanggan_proses.php";
-                      } else if(@$_GET['page'] == 'data_training') {
-                        include "inc/data_training.php";
-                      } else if(@$_GET['page'] == 'manajemen_alat') {
-                        include "inc/manajemen_alat.php";
-                      } else {
-                        include "inc/error-404.php";
-                      } ?>
-                      <!-- batas akhir -->
+                } else if(@$_GET['page'] == 'data_pelanggan') {
+                  include "inc/data_pelanggan.php";
+                } else if(@$_GET['page'] == 'data_pelanggan_manajemen') {
+                  include "inc/data_pelanggan_manajemen.php";
+                } else if(@$_GET['page'] == 'data_pelanggan_detail') {
+                  include "inc/data_pelanggan_detail.php";
+                } else if(@$_GET['page'] == 'data_pelanggan_proses') {
+                  include "inc/data_pelanggan_proses.php";
+                } else if(@$_GET['page'] == 'data_training') {
+                  include "inc/data_training.php";
+                } else if(@$_GET['page'] == 'manajemen_alat') {
+                  include "inc/manajemen_alat.php";
+                } else {
+                  include "inc/error-404.php";
+                } ?>
+                <!-- batas akhir -->
 
 
-                      <!-- content-wrapper ends -->
-                      <!-- partial:partials/_footer.html -->
-                      <footer class="footer">
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 Version 0.0</span>
-                          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Bagus TH made with <i class="mdi mdi-heart text-danger"></i></span>
-                        </div>
-                      </footer>
-                      <!-- partial -->
-                    </div>
-                    <!-- main-panel ends -->
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                  <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 Version 0.0</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Bagus TH made with <i class="mdi mdi-heart text-danger"></i></span>
                   </div>
-                  <!-- page-body-wrapper ends -->
-                </div>
-                <!-- container-scroller -->
+                </footer>
+                <!-- partial -->
+              </div>
+              <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+          </div>
+          <!-- container-scroller -->
 
-                <!-- plugins:js -->
-                <script src="vendors/js/vendor.bundle.base.js"></script>
-                <script src="vendors/js/vendor.bundle.addons.js"></script>
-                <!-- endinject -->
-                <!-- Plugin js for this page-->
-                <!-- End plugin js for this page-->
-                <!-- inject:js -->
-                <script src="js/off-canvas.js"></script>
-                <script src="js/misc.js"></script>
-                <!-- endinject -->
-                <!-- Custom js for this page-->
-                <script src="js/dashboard.js"></script>
-                <script src="js/chart.js"></script>
-                <script src="js/sweetalert2.all.min.js"></script>
-                <script src="js/myscript.js"></script>
-                <!-- End custom js for this page-->
-                <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
-                <script>
-                  $(document).ready( function () {
-                    $('#myTable').DataTable();
-                  });
-                </script>
-                <script>
-                  function edit_alat() {
-                    document.proses.action = '?page=manajemen_alat&action=alat_edit&id_pel=<?= $id_pel;?>';
-                    document.proses.submit();
-                  };
+          <!-- plugins:js -->
+          <script src="vendors/js/vendor.bundle.base.js"></script>
+          <script src="vendors/js/vendor.bundle.addons.js"></script>
+          <!-- endinject -->
+          <!-- Plugin js for this page-->
+          <!-- End plugin js for this page-->
+          <!-- inject:js -->
+          <script src="js/off-canvas.js"></script>
+          <script src="js/misc.js"></script>
+          <!-- endinject -->
+          <!-- Custom js for this page-->
+          <script src="js/dashboard.js"></script>
+          <script src="js/chart.js"></script>
+          <script src="js/sweetalert2.all.min.js"></script>
+          <script src="js/myscript.js"></script>
+          <!-- End custom js for this page-->
+          <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+          <script>
+            $(document).ready( function () {
+              $('#myTable').DataTable();
+            });
+          </script>
+          <script>
+            function edit_alat() {
+              document.proses.action = '?page=manajemen_alat&action=alat_edit&id_pel=<?= $id_pel;?>';
+              document.proses.submit();
+            };
 
-                  function hapus_alat() {
-                    var conf = confirm('Yakin akan menghapus data ?');
-                    if (conf) {
-                      document.proses.action = '?page=manajemen_alat&action=alat_hapus&id_pel=<?= $id_pel;?>';
-                      document.proses.submit();
-                    }
-                  };
-                </script>
-              </body>
+            function hapus_alat() {
+              var conf = confirm('Yakin akan menghapus data ?');
+              if (conf) {
+                document.proses.action = '?page=manajemen_alat&action=alat_hapus&id_pel=<?= $id_pel;?>';
+                document.proses.submit();
+              }
+            };
+          </script>
+        </body>
 
-              </html>
-              <?php    
-            } else { 
-              include "login.php";
-            }
-            ?>
+        </html>
+        <?php    
+      } else { 
+        include "login.php";
+      }
+      ?>
