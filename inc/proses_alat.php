@@ -84,17 +84,23 @@ if(isset($_POST['add'])) {
     if (mysqli_num_rows($sql_kwh_rt) > 0) {
       $data_kwh_rt = mysqli_fetch_array($sql_kwh_rt);
       $jumlah_kwh_rt = $data_kwh_rt['kwh_rt'];
-      mysqli_query($db, "UPDATE data_testing SET kwh_rt = '$jumlah_kwh_rt' WHERE id_pel = '$id_pel' ")
-      or die ($db->error);
-    }
+      if ($jumlah_kwh_rt == NULL) {
+        mysqli_query($db, "UPDATE data_testing SET kwh_rt = 0 WHERE id_pel = '$id_pel' ");
+      } else {
+        mysqli_query($db, "UPDATE data_testing SET kwh_rt = '$jumlah_kwh_rt' WHERE id_pel = '$id_pel' ");
+      }
+    } 
 
     $sql_kwh_bisnis = mysqli_query($db, "SELECT SUM(pemakaian_perkwh) AS kwh_bisnis FROM alat_pelanggan WHERE id_pel = '$id_pel' AND keperluan_untuk = 'Bisnis' ");
     if (mysqli_num_rows($sql_kwh_bisnis) > 0) {
       $data_kwh_bisnis = mysqli_fetch_array($sql_kwh_bisnis);
       $jumlah_kwh_bisnis = $data_kwh_bisnis['kwh_bisnis'];
-      mysqli_query($db, "UPDATE data_testing SET kwh_bisnis = '$jumlah_kwh_bisnis' WHERE id_pel = '$id_pel' ")
-      or die ($db->error);
-    }
+      if ($jumlah_kwh_bisnis == NULL) {
+        mysqli_query($db, "UPDATE data_testing SET kwh_bisnis = 0 WHERE id_pel = '$id_pel' ");
+      } else {
+        mysqli_query($db, "UPDATE data_testing SET kwh_bisnis = '$jumlah_kwh_bisnis' WHERE id_pel = '$id_pel' ");
+      }
+    } 
   }
   
   echo "<script>alert(' ".$totall." data berhasil diedit '); window.location='../?page=data_pelanggan_detail&id_pel=".$id_pel." ';</script>";

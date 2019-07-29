@@ -127,8 +127,8 @@ $no = 1;
                   <label for="hasil">Hasil</label>
                   <select class="form-control" name="hasil">
                     <option value="">-- Pilih Hasil --</option>
-                    <option value="Disetujui">Disetujui</option>
-                    <option value="Tidak Disetujui">Tidak Disetujui</option>
+                    <option value="Sesuai">Sesuai</option>
+                    <option value="Tidak Sesuai">Tidak Sesuai</option>
                   </select>
                 </div>
                 
@@ -234,8 +234,8 @@ $no = 1;
                         } else {
                           echo '<option value="">-- Pilih Hasil --</option>';
                         }
-                        echo '<option value="Disetujui">Disetujui</option>';
-                        echo '<option value="Tidak Disetujui">Tidak Disetujui</option>';
+                        echo '<option value="Sesuai">Sesuai</option>';
+                        echo '<option value="Tidak Sesuai">Tidak Sesuai</option>';
                         ?>
                       </select>
                     </div>
